@@ -34,15 +34,20 @@ export default function App(){
       <hr/>
 
       <h1>Olá, Conheça nossa equipe</h1>
-      <Equipe nome="Vitor Hugo" cargo="Frent-End" idade="21"/>
+      <Equipe nome="Vitor Hugo" cargo="Frent-End" idade="21" facebook="https://google.com" instagram="https://google.com" youtube="https://google.com"/>
+      <Equipe nome="Kleber Andrade" cargo="Back-End" idade="25"  facebook="https://google.com" instagram="https://google.com" youtube="https://google.com"/>
+      <Equipe nome="Ana Catarina" cargo="Desgner" idade="20"  facebook="https://google.com" instagram="https://google.com" youtube="https://google.com"/>
     </div>
   )
 }
 
+// Mexendo com props e elementos dinamicos para mais de um elemento (EQUIPE).
 const Equipe = (props) => {
   return(
     <div>
       <Sobre nome={props.nome} cargo={props.cargo} idade={props.idade}/>
+      <Social face={props.facebook} insta={props.instagram} you={props.youtube}/>
+      <hr/>
     </div>
 
   );
@@ -58,6 +63,16 @@ const Sobre = (props) => {
     </div>
 
   );
+}
 
+const Social = (props) => {
+  return(
+    <div>
+      <a href={props.insta}>Instagram </a>
+      <a href={props.face}>Facbook </a>
+      <a href={props.you}>YouTube </a>
 
+    </div>
+
+  );
 }
