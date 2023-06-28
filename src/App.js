@@ -109,6 +109,12 @@ export default function App() {
       <h1>Navegação</h1>
       <FooterDonw quem="https://facebook.com" home="htpps://youtube.com" sobre="htpps://github.com" sair="#" />
 
+      <hr/>
+      <Contator/>
+      <hr/>
+
+      <h1>Tempo</h1>
+      <Time />
     </div>
   )
 }
@@ -136,6 +142,125 @@ class FooterDonwPrin extends Component {
       </div>
     );
   }
+}
+
+
+
+
+//Mexendo com STATES, STATES são estados que da para mexer no valores
+
+class Contator extends Component{
+
+  //construtor que sempre recebe props.
+  constructor(props){
+
+    //Para ele poder acessar todas as informacoes.
+    super(props);
+
+    //Todas as STATES vai nele.
+    this.state = {
+      nome: 'Vitor Hugo',
+      contador: 0
+    }
+
+    //Para ser indentificado e ser usado as funcoes
+    this.aumentar = this.aumentar.bind(this);
+    this.diminuir = this.diminuir.bind(this);
+
+  }
+  aumentar(){
+    // console.log('Aumentou!!!!');
+
+    let state = this.state;
+    state.contador += 1;
+    state.nome = 'Vitor Hugp';
+
+    //Para alterar STATE
+    this.setState(state);
+
+    if(state.contador === 10){
+
+     state.nome = "João";
+    }else if(state.contador === 15){
+     state.nome = "Kleber";
+     
+  }
+  
+  }
+
+  diminuir(){
+
+    let state = this.state;
+    state.contador -= 1;
+    state.nome = 'Jose';
+    this.setState(state);
+
+    if(state.contador <= 0){
+      alert('Ops, Chegou a 0');
+    }
+
+   
+  }
+
+  render(){
+    return(
+      <div>
+        {this.state.nome}
+
+        <h1>Criando contador</h1>
+
+        <h2> <button onClick={this.diminuir}>-</button> {this.state.contador} <button onClick={this.aumentar}>+</button> </h2>
+      </div>
+    );
+  }
+}
+
+class Time extends Component{
+
+    constructor(props){
+    super(props);
+    this.state = {
+      timer: '00:00:00',
+      nome: 'Vitor '
+
+
+
+    }
+  }
+
+  // essa funçao serve para rodar algo ou ate mesmo consumir uma API
+  componentDidMount(){
+
+    setInterval(() =>{
+
+      this.setState({timer: new Date().toLocaleTimeString() })
+
+    }, 1000);
+
+  }
+
+  // Ele mostra as atualicoes 
+  // componentDidUpdate(){
+  //   console.log('Atualizou !!!!')
+  // }
+
+
+  
+  // ele retorna TRUE e FALSE, da para fazer comparaçoes entre States
+  // shouldComponentUpdate(){
+
+  // }
+
+
+  render(){
+    return(
+      <div>
+        <h1>{this.state.nome}</h1>
+        <h1>{this.state.timer}</h1>
+      </div>
+    );
+  }
+  
 }
 
 
