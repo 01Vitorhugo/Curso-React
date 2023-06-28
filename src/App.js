@@ -19,6 +19,68 @@ const Bemvindo2 = (props) => {
   )
 }
 
+
+
+// Mexendo com props e elementos dinamicos para mais de um elemento (EQUIPE).
+const Equipe = (props) => {
+  return (
+    <div>
+      <Sobre nome={props.nome} cargo={props.cargo} idade={props.idade} />
+      <Social face={props.facebook} insta={props.instagram} you={props.youtube} />
+      <hr />
+    </div>
+
+  );
+}
+
+const Sobre = (props) => {
+  return (
+    <div>
+      <h1>Olá, me chamo {props.nome}</h1>
+      <h1>Tenho {props.idade} anos</h1>
+      <h1>Trabalho como {props.cargo} na empresa DeepCode.</h1>
+    </div>
+
+  );
+}
+
+const Social = (props) => {
+  return (
+    <div>
+      <a href={props.insta}>Instagram </a>
+      <a href={props.face}>Facbook </a>
+      <a href={props.you}>YouTube </a>
+    </div>
+
+  );
+}
+
+//Class component, sempre que criado, ele EXTENTS COMPONENTE 
+//import React, { Component } from "react"; (TEM QUE SEMPRE IMPORTAR).
+
+class Grupo extends Component {
+  render() {
+    return (
+      <div>
+        <SobreGrupo nome={this.props.nome} idade={this.props.idade} />
+      </div>
+    );
+
+  }
+}
+
+class SobreGrupo extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Funcionario(a) {this.props.nome}</h1>
+        <h1> {this.props.idade} Anos.</h1>
+      </div>
+
+    );
+  }
+}
+
 export default function App() {
   return (
     <div>
@@ -42,71 +104,38 @@ export default function App() {
       <h1>Grupos</h1>
       <Grupo nome="Vitor Hugo" idade="21" />
       <Grupo nome="Amanda Alves" idade="25" />
+
       <hr />
+      <h1>Navegação</h1>
+      <FooterDonw quem="https://facebook.com" home="htpps://youtube.com" sobre="htpps://github.com" sair="#" />
+
     </div>
   )
 }
 
-// Mexendo com props e elementos dinamicos para mais de um elemento (EQUIPE).
-const Equipe = (props) => {
-  return (
-    <div>
-      <Sobre nome={props.nome} cargo={props.cargo} idade={props.idade} />
-      <Social face={props.facebook} insta={props.instagram} you={props.youtube} />
-      <hr />
-    </div>
-
-  );
-}
-
-const Sobre = (props) => {
-  return (
-    <div>
-      <h1>Olá, me chamo {props.nome}</h1>
-      <h1>Tenho {props.idade} anos</h1>
-      <h1>Trabalho como {props.cargo} na empresa DeepCode.</h1>
-
-    </div>
-
-  );
-}
-
-const Social = (props) => {
-  return (
-    <div>
-      <a href={props.insta}>Instagram </a>
-      <a href={props.face}>Facbook </a>
-      <a href={props.you}>YouTube </a>
-
-    </div>
-
-  );
-}
-
-//Class component, sempre que criado, ele EXTENTS COMPONENTE 
-//import React, { Component } from "react"; (TEM QUE SEMPRE IMPORTAR).
-
-class Grupo extends Component {
-  render() {
-    return(
-      <div>
-        <SobreGrupo nome={this.props.nome} idade={this.props.idade} />
-
-
-      </div>
-    );
-
-  }
-}
-
-class SobreGrupo extends Component {
+class FooterDonw extends Component {
   render() {
     return (
       <div>
-        <h1>Funcionario(a) {this.props.nome}</h1>
-        <h1> {this.props.idade} Anos.</h1>
+        <FooterDonwPrin quem={this.props.quem} home={this.props.home}
+          sobre={this.props.sobre} sair={this.props.sair} />
       </div>
-
     );
   }
 }
+
+class FooterDonwPrin extends Component {
+  render() {
+    return (
+      <div>
+        <a href={this.props.quem}> Quem-Somos |</a>
+        <a href={this.props.home}> Home |</a>
+        <a href={this.props.sobre}> Sobre |</a>
+        <a href={this.props.sair}> Sair </a>
+
+      </div>
+    );
+  }
+}
+
+
